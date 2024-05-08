@@ -1,6 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import userRouter from "../routes/user/userRouter.js";
+import userRouter from "../routes/userRouter.js";
 import { connect } from "../config/db.js";
 
 const app = express();
