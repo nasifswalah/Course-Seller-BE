@@ -5,8 +5,7 @@ import { generateToken } from "../utlis/generateToken.js";
 export const signup = async (req, res) => {
   try {
     const { email, password, firstName, lastName } = req.body
-    console.log(email);
- 
+   
     const userExist = await User.findOne({ email });
     
     

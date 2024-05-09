@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
-import Instructor from '../models/instructorModel';
-import Course from '../models/courseModel';
-import { cloudinaryInstance } from '../config/cloudinary';
+import Instructor from '../models/instructorModel.js';
+import Course from '../models/courseModel.js';
+import { cloudinaryInstance } from '../config/cloudinary.js';
 
 // Get all courses
 export const getCourses = async (req, res) => {
@@ -53,3 +53,34 @@ export const createCourse = async (req, res) => {
         res.send("Course creation failed");
     }
 }
+
+//Update course
+export const updateCourse = async (req, res) => {
+    const id = req.params.id;
+
+    const { description, price, instructor } = req.body;
+  
+    const updatedCourse = await Course.findOneAndUpdate(
+      { _id: id },
+      { description, price, instructor },
+      {
+        new: true,
+      }
+    );
+  
+    if (!updatedCourse) {
+      return res.send("Course is not updated");
+    }
+    console.log(updatedCourse);
+    return res.send(updatedCourse);
+  };
+
+  //Delete Course
+  export const deleteCourse = async (req, res) => {
+    const id = req.params.id;
+    const deleteId = await Course.deleteOne({ _id: id });
+    if (!deleteId) {
+      return res.send("not deleted");
+    }
+    res.send("deleted course");
+  };
