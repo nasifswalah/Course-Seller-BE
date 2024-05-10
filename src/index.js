@@ -3,9 +3,11 @@ import cookieParser from "cookie-parser";
 import userRouter from "../routes/userRoutes.js";
 import { connect } from "../config/db.js";
 import instructorRouter from "../routes/instructorRoutes.js";
+import cors from 'cors';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser())
 app.use("/api/v1/user", userRouter);
