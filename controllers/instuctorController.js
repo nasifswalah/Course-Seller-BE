@@ -29,7 +29,7 @@ export const singup = async (req, res) => {
   
       const token = adminToken(newInstructorCreated);
       res.cookie("token", token);
-      res.json({ message: "signned in!", token });
+      res.send("Signed successfully");
     } catch (error) {
       console.log(error, "Something wrong");
     }
